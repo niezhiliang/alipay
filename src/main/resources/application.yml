@@ -1,0 +1,24 @@
+
+#支付宝支付参数配置
+alipay:
+  #应用ID,您的APPID，收款账号既是您的APPID对应支付宝账号
+  app_id:
+  #商户私钥，您的PKCS8格式RSA2私钥
+  merchant_private_key:
+  #支付宝公钥,查看地址：https://openhome.alipay.com/platform/keyManage.htm 对应APPID下的支付宝公钥。
+  alipay_public_key:
+  #服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
+  notify_url: http://javatest.fangxinqian.cn:10086/notify_url
+  #页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
+  return_url: http://javatest.fangxinqian.cn:10086/return_url
+  #签名方式
+  sign_type: RSA2
+  #字符编码格式
+  charset: utf-8
+  #支付宝网关
+  gatewayUrl: https://openapi.alipay.com/gateway.do
+  #保存支付日志的地址
+  log_path: /tmp/
+server:
+  port: 10086
+
