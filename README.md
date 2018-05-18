@@ -13,11 +13,15 @@
 
 | 名称   | 类型 | 是否必须| 参数描述
 | :----: | :---: | :---: | :---:
-| totalAmount  |String|  必须  |   订单所需支付金额
-| subject  |String|  必须  |   订单标题
-| storeId  |String|  必须  |   商铺编号
-| timeoutExpress  |String|  必须  |   订单自动关闭时间
+| totalAmount  |String|  必须  |   订单所需支付金额(0.01)
+| subject  |String|  必须  |   订单标题(支付宝扫码支付测试)
+| storeId  |String|  必须  |   商铺编号(123456)
+| timeoutExpress  |String|  必须  |   订单自动关闭时间(5m)表示五分钟还未完成交易，自动关闭该订单
 | outTradeNo  |String|  必须  |   交易流水号（不可重复）
+
+这里只是填了一些必要的参数，更多请求参数详情访问支付宝的开发文档
+
+https://docs.open.alipay.com/api_1/alipay.trade.pay/
 
 
 #### 响应:
@@ -27,6 +31,17 @@
 | msg  |Object| 返回必要内容
 | out_trade_no  |String| 响应消息
 | qr_code  |String| 二维码内容
+
+同样响应参数我也只要了一些我自己需要的，更多响应参数访问支付宝开发文档
+
+https://docs.open.alipay.com/api_1/alipay.trade.pay/
+
+
+
+
+
+
+
 
 
 
