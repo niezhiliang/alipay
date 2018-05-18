@@ -41,7 +41,7 @@ https://docs.open.alipay.com/api_1/alipay.trade.pay/
 
 https://cli.im/
 
-<img src="https://github.com/niezhiliang/alipay/blob/master/pic/gen_qrcode.png" width = "600" height = "130" alt="失败" align=center />
+<img src="https://github.com/niezhiliang/alipay/blob/master/pic/gen_qrcode.png" width = "600" height = "300" alt="失败" align=center />
 
 
 
