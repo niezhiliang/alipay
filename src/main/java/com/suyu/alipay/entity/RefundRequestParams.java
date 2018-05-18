@@ -1,5 +1,7 @@
 package com.suyu.alipay.entity;
 
+import com.alipay.api.domain.GoodsDetail;
+
 import java.util.List;
 
 /**

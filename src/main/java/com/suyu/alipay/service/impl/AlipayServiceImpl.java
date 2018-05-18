@@ -6,14 +6,12 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradePrecreateModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradeFastpayRefundQueryRequest;
-import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.AlipayTradeFastpayRefundQueryResponse;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
 import com.alipay.api.response.AlipayTradeRefundResponse;
 import com.suyu.alipay.config.AlipayConfig;
-import com.suyu.alipay.entity.PayRequestParams;
 import com.suyu.alipay.entity.RefundRequestParams;
 import com.suyu.alipay.entity.qrcode.*;
 import com.suyu.alipay.service.AlipayService;
@@ -35,29 +33,6 @@ public class AlipayServiceImpl implements AlipayService {
     private Logger logger = Logger.getLogger("com.suyu.alipay.service.impl.AlipayServiceImpl");
 
     /**
-     * pc端的下单
-     * @param orderParams
-     * @return
-     */
-    @Override
-    public String pcPay(PayRequestParams orderParams) {
-        System.out.println(alipayConfig);
-        AlipayClient alipayClient = getAlipayClient();
-        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
-        alipayRequest.setReturnUrl(alipayConfig.getReturn_url());
-        alipayRequest.setNotifyUrl(alipayConfig.getNotify_url());//在公共参数中设置回跳和通知地址
-        String json = JSON.toJSONString(orderParams);
-        alipayRequest.setBizContent(json);//填充业务参数
-        String form="";
-        try {
-            form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
-        } catch (AlipayApiException e) {
-            e.printStackTrace();
-        }
-        return form;
-    }
-
-    /**
      * 通用的退款接口
      * @param requestParams
      * @return
@@ -74,15 +49,25 @@ public class AlipayServiceImpl implements AlipayService {
         } catch (AlipayApiException e) {
             e.printStackTrace();
         }
-        if(response.isSuccess()){
+//        if(response.isSuccess()){
             respInfo.setCode(ResponseCode.SUCCESS);
             RefundResponseSign refundResponseSign = JSON.parseObject(response.getBody(),RefundResponseSign.class);
             respInfo.setContent(refundResponseSign.getAlipay_trade_refund_response());
             respInfo.setMsg("退款成功");
-        } else {
-            respInfo.setCode(ResponseCode.FAIL);
-            respInfo.setMsg("退款失败，请重新尝试退款");
-        }
+            Map<String,String> map = Bean2MapUtil.beanToMap(refundResponseSign.getAlipay_trade_refund_response());
+            map.put("sign",refundResponseSign.getSign());
+            try {
+                boolean flag = AlipaySignature.rsaCheckV1(map,alipayConfig.getAlipay_public_key() ,alipayConfig.getCharset(),
+                        alipayConfig.getSign_type());
+                System.out.println(flag+"----------dd");
+            } catch (AlipayApiException e) {
+                e.printStackTrace();
+            }
+
+//        } else {
+//            respInfo.setCode(ResponseCode.FAIL);
+//            respInfo.setMsg("退款失败，请重新尝试退款");
+       // }
         return respInfo;
     }
     /**

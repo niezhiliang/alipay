@@ -1,9 +1,6 @@
 # alipay
 支付宝支付
 
-
-
-
 退款测试
 127.0.0.1:10086/refund?refund_amount=0.01&out_trade_no=1526521879590&refund_reason=正常退款
 生成二维码
