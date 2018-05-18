@@ -27,8 +27,8 @@ https://docs.open.alipay.com/api_1/alipay.trade.pay/
 | 名称   | 类型 | 参数描述
 | :----: | :---: | :---:
 | code  |String| 响应码（10000为成功）
-| msg  |Object| 返回必要内容
-| out_trade_no  |String| 响应消息
+| msg  |Object| 提示信息
+| out_trade_no  |String| 商户订单号
 | qr_code  |String| 二维码内容
 
 同样响应参数我也只要了一些我自己需要的，更多响应参数访问支付宝开发文档
