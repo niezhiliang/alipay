@@ -1,4 +1,4 @@
-
+## 各个过程的图返回数据请看项目的pic目录图片
 ### 二维码生成接口
     127.0.0.1:10086/qrcode?totalAmount=0.01&subject=支付宝扫码支付测试&storeId=123456&timeoutExpress=5m&outTradeNo=110112113114115
 
