@@ -6,8 +6,6 @@ import com.suyu.alipay.entity.RefundRequestParams;
 import com.suyu.alipay.entity.qrcode.QrServiceEntity;
 import com.suyu.alipay.entity.qrcode.RefundQueryParams;
 import com.suyu.alipay.service.AlipayService;
-import com.suyu.alipay.utils.RespInfo;
-import com.suyu.alipay.utils.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -33,12 +31,7 @@ public class Index {
 
     @RequestMapping(value = "qrcode")
     public String qrcode(AlipayTradePrecreateModel model) {
-        RespInfo respInfo = alipayService.qrcodePay(model);
-        if (respInfo.getCode().equals(ResponseCode.SUCCESS)) {
-            return JSON.toJSONString(respInfo.getContent());
-        } else {
-            return JSON.toJSONString(respInfo);
-        }
+        return JSON.toJSONString(alipayService.qrcodePay(model));
     }
 
     @RequestMapping(value = "notify_url",method = RequestMethod.POST)

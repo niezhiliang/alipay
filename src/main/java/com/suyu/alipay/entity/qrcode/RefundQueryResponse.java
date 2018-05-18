@@ -3,7 +3,11 @@ package com.suyu.alipay.entity.qrcode;
 /**
  * 不带签名的退款查询返回参数
  */
-public class RefundQueryResponse extends ReturnInfo {
+public class RefundQueryResponse {
+    private String code;
+
+    private String msg;
+
 
     private String out_request_no;
 
@@ -17,6 +21,22 @@ public class RefundQueryResponse extends ReturnInfo {
 
     public String getOut_request_no() {
         return out_request_no;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public void setOut_request_no(String out_request_no) {

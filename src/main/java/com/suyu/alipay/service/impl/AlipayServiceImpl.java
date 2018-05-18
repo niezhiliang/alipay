@@ -15,10 +15,7 @@ import com.suyu.alipay.config.AlipayConfig;
 import com.suyu.alipay.entity.RefundRequestParams;
 import com.suyu.alipay.entity.qrcode.*;
 import com.suyu.alipay.service.AlipayService;
-import com.suyu.alipay.utils.Bean2MapUtil;
 import com.suyu.alipay.utils.ParamsUtil;
-import com.suyu.alipay.utils.RespInfo;
-import com.suyu.alipay.utils.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
@@ -38,8 +35,7 @@ public class AlipayServiceImpl implements AlipayService {
      * @return
      */
     @Override
-    public RespInfo pcRefund(RefundRequestParams requestParams) {
-        RespInfo respInfo = new RespInfo();
+    public RefundResponse pcRefund(RefundRequestParams requestParams) {
         AlipayClient alipayClient = getAlipayClient();
         AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
         request.setBizContent(JSON.toJSONString(requestParams));
@@ -49,26 +45,11 @@ public class AlipayServiceImpl implements AlipayService {
         } catch (AlipayApiException e) {
             e.printStackTrace();
         }
-//        if(response.isSuccess()){
-            respInfo.setCode(ResponseCode.SUCCESS);
+        if(response.isSuccess()){
             RefundResponseSign refundResponseSign = JSON.parseObject(response.getBody(),RefundResponseSign.class);
-            respInfo.setContent(refundResponseSign.getAlipay_trade_refund_response());
-            respInfo.setMsg("退款成功");
-            Map<String,String> map = Bean2MapUtil.beanToMap(refundResponseSign.getAlipay_trade_refund_response());
-            map.put("sign",refundResponseSign.getSign());
-            try {
-                boolean flag = AlipaySignature.rsaCheckV1(map,alipayConfig.getAlipay_public_key() ,alipayConfig.getCharset(),
-                        alipayConfig.getSign_type());
-                System.out.println(flag+"----------dd");
-            } catch (AlipayApiException e) {
-                e.printStackTrace();
-            }
-
-//        } else {
-//            respInfo.setCode(ResponseCode.FAIL);
-//            respInfo.setMsg("退款失败，请重新尝试退款");
-       // }
-        return respInfo;
+        return refundResponseSign.getAlipay_trade_refund_response();
+        }
+        return null;
     }
     /**
      * 扫码运行代码
@@ -78,35 +59,19 @@ public class AlipayServiceImpl implements AlipayService {
      * @return
      */
     @Override
-    public RespInfo qrcodePay(AlipayTradePrecreateModel model) {
-        RespInfo respInfo = new RespInfo();
+    public QrCodeResponse qrcodePay(AlipayTradePrecreateModel model) {
         AlipayClient alipayClient = getAlipayClient();
         AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
         request.setBizModel(model);
         request.setNotifyUrl(alipayConfig.getNotify_url());
+        AlipayTradePrecreateResponse alipayTradePrecreateResponse = null;
         try {
-            AlipayTradePrecreateResponse alipayTradePrecreateResponse = alipayClient.execute(request);
-            QrResponse qrResponse = JSON.parseObject(alipayTradePrecreateResponse.getBody(),QrResponse.class);
-            Map<String,String> map = Bean2MapUtil.beanToMap(qrResponse.getAlipay_trade_precreate_response());
-            map.put("sign",qrResponse.getSign());
-            boolean flag = AlipaySignature.rsaCheckV1(map,alipayConfig.getAlipay_public_key() ,alipayConfig.getCharset(),
-                    alipayConfig.getSign_type());
-            if (!flag) {//这个地方到时候要改 flag为真时 才是验签通过
-                respInfo.setCode(ResponseCode.SUCCESS);
-                respInfo.setMsg("二维码生成成功");
-                respInfo.setContent(qrResponse);
-            }
-            else {
-                respInfo.setCode(ResponseCode.SIGN_CHECK_FAIL);
-                respInfo.setMsg("验签失败，请重新发起请求");
-                respInfo.setContent(qrResponse);
-                logger.warning("Alipay generated two-dimensional code signature is changed illegally");
-            }
+            alipayTradePrecreateResponse = alipayClient.execute(request);
         } catch (AlipayApiException e) {
             e.printStackTrace();
-            respInfo.setCode(ResponseCode.FAIL);
         }
-        return respInfo;
+        QrResponse qrResponse = JSON.parseObject(alipayTradePrecreateResponse.getBody(),QrResponse.class);
+        return qrResponse.getAlipay_trade_precreate_response();
     }
 
     /**
@@ -119,6 +84,9 @@ public class AlipayServiceImpl implements AlipayService {
         Map<String, String> map = ParamsUtil.ParamstoMap(request);
         QrServiceEntity qrServiceEntity = new QrServiceEntity();
         qrServiceEntity.setIsreceive(false);
+        for (String key :map.keySet()) {
+            System.out.println("[ "+key + " = "+map.get(key)+" ]");
+        }
         try {
             boolean flag = AlipaySignature.rsaCheckV1(map,alipayConfig.getAlipay_public_key() ,alipayConfig.getCharset(),
                     alipayConfig.getSign_type());
@@ -129,7 +97,6 @@ public class AlipayServiceImpl implements AlipayService {
                 return qrServiceEntity;
             }
             else {
-
                 return qrServiceEntity;
             }
         } catch (AlipayApiException e) {
@@ -144,8 +111,7 @@ public class AlipayServiceImpl implements AlipayService {
      * @return
      */
     @Override
-    public RespInfo refundQuery(RefundQueryParams refundQueryParams) {
-        RespInfo respInfo = new RespInfo();
+    public RefundQueryResponse refundQuery(RefundQueryParams refundQueryParams) {
         AlipayClient alipayClient = getAlipayClient();
         AlipayTradeFastpayRefundQueryRequest request = new AlipayTradeFastpayRefundQueryRequest();
         request.setBizContent(JSON.toJSONString(refundQueryParams));
@@ -157,14 +123,11 @@ public class AlipayServiceImpl implements AlipayService {
         }
         RefundQueryResponseSign refundQueryResponseSign = JSON.parseObject(response.getBody(),RefundQueryResponseSign.class);
         if(response.isSuccess()){
-            respInfo.setCode(ResponseCode.SUCCESS);
-            respInfo.setContent(refundQueryResponseSign.getAlipay_trade_fastpay_refund_query_response());
+           return refundQueryResponseSign.getAlipay_trade_fastpay_refund_query_response();
         } else {//订单不存在执行
-            respInfo.setCode(ResponseCode.SIGN_CHECK_FAIL);
-            System.out.println("签名被改动，请重新发起查询");
-            respInfo.setContent(refundQueryResponseSign.getAlipay_trade_fastpay_refund_query_response());
+
         }
-        return respInfo;
+        return null;
     }
 
     /**

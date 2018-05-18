@@ -1,8 +1,19 @@
 package com.suyu.alipay.entity.qrcode;
 
+
+
 import com.alipay.api.domain.TradeFundBill;
 
-public class RefundResponse extends ReturnInfo {
+import java.util.List;
+
+public class RefundResponse {
+    private String code;
+
+    private String msg;
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     private String buyer_logon_id;
 
@@ -14,13 +25,25 @@ public class RefundResponse extends ReturnInfo {
 
     private String out_trade_no;
 
-    private TradeFundBill refund_detail_item_list;
+    private List<TradeFundBill> refund_detail_item_list;
 
     private String refund_fee;
 
     private String send_back_fee;
 
     private String trade_no;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
 
     public String getBuyer_logon_id() {
         return buyer_logon_id;
@@ -62,14 +85,6 @@ public class RefundResponse extends ReturnInfo {
         this.out_trade_no = out_trade_no;
     }
 
-    public TradeFundBill getRefund_detail_item_list() {
-        return refund_detail_item_list;
-    }
-
-    public void setRefund_detail_item_list(TradeFundBill refund_detail_item_list) {
-        this.refund_detail_item_list = refund_detail_item_list;
-    }
-
     public String getRefund_fee() {
         return refund_fee;
     }
@@ -92,5 +107,13 @@ public class RefundResponse extends ReturnInfo {
 
     public void setTrade_no(String trade_no) {
         this.trade_no = trade_no;
+    }
+
+    public List<TradeFundBill> getRefund_detail_item_list() {
+        return refund_detail_item_list;
+    }
+
+    public void setRefund_detail_item_list(List<TradeFundBill> refund_detail_item_list) {
+        this.refund_detail_item_list = refund_detail_item_list;
     }
 }
