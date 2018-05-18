@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd827a14-1fe8-47cf-9077-f1bc1e45efae" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/pic/gen_qrcode.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/pic/pay_success.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/pic/qr_use.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/pic/refund_all.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/pic/refund_use.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/pic/wait_pay.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/pic/qr_all.png" afterPath="$PROJECT_DIR$/pic/qr_all.png" />
-      <change beforePath="$PROJECT_DIR$/pic/qr_postman.png" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="9" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+            <state relative-caret-position="456">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -49,17 +40,33 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-372">
-                <caret line="41" column="15" lean-forward="true" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
-                <folding />
+              <first_editor relative-caret-position="-410">
+                <caret line="39" column="15" lean-forward="false" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+                <folding>
+                  <marker date="1526635310000" expanded="true" signature="0:2812" ph="h1: ## alipay" />
+                </folding>
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pay_success.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pic/pay_success.png">
+      <file leaf-file-name="回调支付成功返回参数.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pic/回调支付成功返回参数.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="退款返回的部分值.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pic/退款返回的部分值.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="生成二维码所有返回值.png" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pic/生成二维码所有返回值.png">
           <provider selected="true" editor-type-id="images">
             <state />
           </provider>
@@ -69,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/suyu/alipay/service/impl/AlipayServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="575">
-              <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+              <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -187,7 +194,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="50" />
+    <option name="x" value="26" />
     <option name="y" value="23" />
     <option name="width" value="2419" />
     <option name="height" value="1321" />
@@ -451,15 +458,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526351322707</updated>
-      <workItem from="1526351324415" duration="83738000" />
+      <workItem from="1526351324415" duration="84281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83738000" />
+    <option name="totallyTimeSpent" value="84281000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="23" width="2419" height="1321" extended-state="0" />
+    <frame x="26" y="23" width="2419" height="1321" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -560,14 +567,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/com/alipay/sdk/alipay-sdk-java/3.0.0/alipay-sdk-java-3.0.0.jar!/com/alipay/api/domain/AlipayTradePrecreateModel.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/security/SignatureSpi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4218">
@@ -944,11 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pic/qr_all.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pic/qr_postman.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -957,24 +951,21 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/suyu/alipay/service/impl/AlipayServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
-          <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pic/pay_success.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-372">
-            <caret line="41" column="15" lean-forward="true" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
-            <folding />
+          <first_editor relative-caret-position="-410">
+            <caret line="39" column="15" lean-forward="false" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+            <folding>
+              <marker date="1526635310000" expanded="true" signature="0:2812" ph="h1: ## alipay" />
+            </folding>
           </first_editor>
           <second_editor />
         </state>
@@ -982,10 +973,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="9" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        <state relative-caret-position="456">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pic/回调支付成功返回参数.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pic/退款返回的部分值.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pic/生成二维码所有返回值.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>
