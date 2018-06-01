@@ -15,25 +15,25 @@ import javax.servlet.http.HttpServletRequest;
 public class Index {
     @Autowired
     private AlipayService alipayService;
-
+    //退款
     @RequestMapping(value = "refund")
     public String refund(RefundRequestParams refundRequestParams) {
         System.out.println(refundRequestParams);
 
         return JSON.toJSONString(alipayService.pcRefund(refundRequestParams));
     }
-
+    //退款查询
     @RequestMapping(value = "refund_query")
     public String refundQuery(RefundQueryParams refundQueryParams) {
 
         return JSON.toJSONString(alipayService.refundQuery(refundQueryParams));
     }
-
+    //生成二维码
     @RequestMapping(value = "qrcode")
     public String qrcode(AlipayTradePrecreateModel model) {
         return JSON.toJSONString(alipayService.qrcodePay(model));
     }
-
+    //支付回调
     @RequestMapping(value = "notify_url",method = RequestMethod.POST)
     public String notifyurl(HttpServletRequest request) {
         QrServiceEntity qrServiceEntity = alipayService.alipayNotify(request);
