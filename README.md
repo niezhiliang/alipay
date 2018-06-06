@@ -48,7 +48,7 @@ https://cli.im/
 ### 支付回调
 
 ##### 描述: 支付回调是支付宝来访问你的地址，这个地址必须外网能够访问到（作用就是告诉你当前订单处于什么状态）这里不多解释，直接贴出我项目中的源代码
-```java
+```
 /**
      * 扫码的回调
      * @param request
@@ -85,39 +85,6 @@ https://cli.im/
             AlipayExample example = new AlipayExample();
             example.createCriteria().andOuttradenoEqualTo(alipay.getOuttradeno());
             alipayModelService.updateByExampleSelective(alipay,example);
-
-            example.clear();
-            example.createCriteria().andOuttradenoEqualTo(alipay.getOuttradeno());
-            List<Alipay> alipays = alipayModelService.selectByExample(example);
-            if (!alipays.isEmpty()) {
-                alipay = alipays.get(0);
-
-                /*******修改订单的支付状态******/
-                Order order = new Order();
-                order.setStatus((byte)1);
-                order.setId(alipay.getOrderid());
-                orderService.updateByPrimaryKeySelective(order);
-
-                System.out.println("===========================================================================");
-
-                /*******修改用户的余额*******/
-                order = orderService.selectByPrimaryKey(order.getId());
-                /****如果用户之前购买了套餐 认证过后再送三份****/
-                boolean bool = signBalanceService.isExitBalance(order.getUserid());
-                SignBalance signBalance = new SignBalance();
-                signBalance.setUserid(order.getUserid());
-                if (!bool) {
-                    signBalance.setFreetimes((byte)0);
-                    signBalance.setNumber(order.getNumber());
-                    signBalanceService.insertSelective(signBalance);
-                } else {
-                    signBalance = signBalanceService.selectByUserid(order.getUserid());
-                    signBalance.setNumber(signBalance.getNumber()+order.getNumber());
-                    signBalanceService.updateByPrimaryKeySelective(signBalance);
-                }
-
-
-                System.out.println("===========================================================================");
             }
             //如果我们这边接收到了支付成功就该返回一个success的字符串给支付宝那边，避免支付宝一直不停的访问我们回调的url
             return "success";
