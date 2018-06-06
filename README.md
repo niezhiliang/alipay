@@ -47,8 +47,8 @@ https://cli.im/
 
 ### 支付回调
 
-##### 描述: 支付回调是支付宝来访问你的地址，这个地址必须外网能够访问到（作用就是告诉你当前订单处于什么状态）这里不多解释，直接贴出我项目中的源代码
-```
+##### 描述: 支付回调是支付宝来访问你的地址，这个地址必须外网能够访问到（作用就是告诉你当前订单处于什么状态）这里不多解释，直接贴出我项目中的部分代码
+```java
 /**
      * 扫码的回调
      * @param request
@@ -66,7 +66,6 @@ https://cli.im/
             System.out.println(url);
             HttpClientUtils.get(url);
             /*********************************************************/
-
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Alipay alipay = new Alipay();
             alipay.setOuttradeno(map.get("out_trade_no"));
