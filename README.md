@@ -1,4 +1,27 @@
 ## 各个过程的图返回数据请看项目的pic目录图片
+
+### PC端支付(跳到支付宝官网支付)
+    127.0.0.1:10086/pcpay?out_trade_no=12345665478&total_amount=0.01&subject=支付宝支付测试&body=支付测试描述
+
+##### 描述: 生产支付所需的二维码链接地址(通过这个地址用插件生产二维码图片扫描进行支付)
+
+##### Request URL: 127.0.0.1:10086/qrcode
+
+##### Request Method: GET
+
+#### 参数：
+
+| 名称   | 类型 | 是否必须| 参数描述
+| :----: | :---: | :---: | :---:
+| out_trade_no  |String|  必须  |   交易流水号（不可重复，重复就会显示二维码失效）
+| total_amount  |String|  必须  |   订单金额
+| subject  |String|  必须  |   订单标题(支付宝官网支付测试)
+| body  |String|  必须  |   订单描述
+
+这里只是填了一些必要的参数，更多请求参数详情访问支付宝的开发文档
+
+https://docs.open.alipay.com/api_1/alipay.trade.pay/
+
 ### 二维码生成接口
     127.0.0.1:10086/qrcode?totalAmount=0.01&subject=支付宝扫码支付测试&storeId=123456&timeoutExpress=5m&outTradeNo=110112113114115
 

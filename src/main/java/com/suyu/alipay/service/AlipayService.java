@@ -16,4 +16,6 @@ public interface AlipayService {
 
     RefundQueryResponse refundQuery(RefundQueryParams refundQueryParams);
 
+    String pcPreOrder(PreOrderParams preOrderParams);
+
 }

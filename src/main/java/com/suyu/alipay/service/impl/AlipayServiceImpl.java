@@ -6,6 +6,7 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradePrecreateModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradeFastpayRefundQueryRequest;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.AlipayTradeFastpayRefundQueryResponse;
@@ -128,6 +129,26 @@ public class AlipayServiceImpl implements AlipayService {
 
         }
         return null;
+    }
+
+    @Override
+    public String pcPreOrder(PreOrderParams preOrderParams) {
+        AlipayClient alipayClient = getAlipayClient();
+        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
+        alipayRequest.setReturnUrl(alipayConfig.return_url);
+        alipayRequest.setNotifyUrl(alipayConfig.notify_url);
+        //官网支付固定值
+        preOrderParams.setProduct_code("FAST_INSTANT_TRADE_PAY");
+        alipayRequest.setBizContent(JSON.toJSONString(preOrderParams));
+        String form="";
+        try {
+            form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
+        } catch (AlipayApiException e) {
+            logger.warning("支付宝PC支付下单异常:");
+            e.printStackTrace();
+        }
+        logger.info(form);
+        return form;
     }
 
     /**
