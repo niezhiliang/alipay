@@ -1,5 +1,8 @@
 ## 各个过程的图返回数据请看项目的pic目录图片
 
+
+> 测试请先修改application.yml里面的参数
+
 ### PC端支付(跳到支付宝官网支付)
     127.0.0.1:10086/pcpay?out_trade_no=12345665478&total_amount=0.01&subject=支付宝支付测试&body=支付测试描述
 
