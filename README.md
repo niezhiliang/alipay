@@ -156,7 +156,6 @@ https://docs.open.alipay.com/api_1/alipay.trade.refund/
 | gmt_refund_pay  |String| 退款支付时间
 | refund_fee  |String| 退款总金额
 | send_back_fee  |String| 退款总金额
-| refund_fee  |String| 退款总金额
 | refund_detail_item_list  |List<TradeFundBill>| 退款使用的资金渠道
 
 同样响应参数我也只要了一些我自己需要的，更多响应参数访问支付宝开发文档
