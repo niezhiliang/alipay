@@ -1,6 +1,4 @@
-### （[简单粗暴的支付宝微信支付项目(一行代码解决)](https://github.com/easy-pay/spring-boot-easy-pay)）
-
-https://github.com/easy-pay/easy-pay
+### [简单粗暴的支付宝微信支付项目(一行代码解决)](https://github.com/easy-pay/spring-boot-easy-pay)
 
 > 各个过程的图返回数据请看项目的pic目录图片
 
